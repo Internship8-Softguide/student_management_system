@@ -9,6 +9,7 @@
 .sidebar {
   width: 240px;
   background-color: #1c1a31;
+  min-height: 100vh;
 }
 .sidebar a,
 .sidebar p,
@@ -19,7 +20,6 @@
   text-decoration: none;
 }
 .content {
-  min-height: 100vh;
   width: 100%;
   background-color: #f4f3f3;
 }
@@ -51,4 +51,17 @@
 }
 nav {
   border-bottom: 4px solid #4040c9;
+}
+.card-icon {
+  font-size: 64px;
+  padding: 0px 18px;
+  border-radius: 50%;
+  background-color: #6464ef;
+  color: #ffffff;
+}
+.teacher-icon {
+  background-color: #ee9f9f;
+}
+.class-icon {
+  background-color: #c4feb0;
 }

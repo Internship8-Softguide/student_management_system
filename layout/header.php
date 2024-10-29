@@ -1,3 +1,4 @@
+<?php require_once ("./stroage/db.php") ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,30 +15,16 @@
   </head>
   <body>
     <div class="main">
-      <div class="sidebar">
-        <div class="sidebar-header my-4 ps-4">
-          <p class="fs-5">ST-Management</p>
-        </div>
-        <div class="menu">
-          <div class="menu-item ms-4 my-2">
-            <i class="bi bi-speedometer"></i>
-            <a href="./index.html" class="menu-list">Dashboard</a>
-          </div>
-        </div>
-        <div class="menu">
-          <div class="menu-item ms-4 my-2">
-            <i class="bi bi-people"></i>
-            <a href="./student_list.html" class="menu-list">Student</a>
-          </div>
-        </div>
-      </div>
+      <?php require_once ("./layout/sidebar.php") ?>
       <div class="content">
         <nav class="bg-white d-flex p-3 px-4 justify-content-between align-items-center">
           <div>
-            <div class="d-flex search">
-              <i class="bi bi-search"></i>
-              <input type="text" placeholder="Search" />
-            </div>
+            <form method="post">
+              <div class="d-flex search">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Search" />
+              </div>
+            </form>
           </div>
           <div>
             <div class="dropdown">
@@ -50,12 +37,8 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Logout</a></li>
-               
               </ul>
             </div>
           </div>
         </nav>
-      </div>
-    </div>
-  </body>
-</html>
+        <div class="page p-4">
