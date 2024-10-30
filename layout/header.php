@@ -1,4 +1,5 @@
 <?php require_once ("./stroage/db.php") ?>
+<?php require_once ("./stroage/student_crud.php") ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
