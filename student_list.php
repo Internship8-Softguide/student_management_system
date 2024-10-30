@@ -16,9 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $student_list = get_all_student($mysqli);
-$i = 1;
-?>
+                <?php $student_list = get_all_student($mysqli); ?>
+                <?php $i = 1;?>
                 <?php while ($student = $student_list->fetch_assoc()) { ?>             
                 <tr>
                     <td><?= $i ?></td>
