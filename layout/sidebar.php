@@ -15,6 +15,12 @@
           </div>
         </div>
         <div class="menu">
+          <div onclick="location.replace('./teacher_list.php')" class="menu-item ms-4 my-2">
+            <i class="bi bi-mortarboard-fill"></i>
+            <a class="menu-list">Teacher</a>
+          </div>
+        </div>
+        <div class="menu">
           <div onclick="location.replace('./student_list.php')" class="menu-item ms-4 my-2">
             <i class="bi bi-people"></i>
             <a class="menu-list">Student</a>
