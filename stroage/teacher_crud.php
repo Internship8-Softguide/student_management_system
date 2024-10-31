@@ -22,7 +22,7 @@ function get_teacher_id($mysqli, $teacher_id)
 
 function delete_teacher($mysqli, $teacher_id)
 {
-    $sql = "DELETE FROM `teachesdfr` WHERE teacher_id=$teacher_id";
+    $sql = "DELETE FROM `teacher` WHERE teacher_id=$teacher_id";
     return $mysqli->query($sql);
 }
 

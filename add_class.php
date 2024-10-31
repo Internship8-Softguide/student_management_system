@@ -56,7 +56,6 @@ if (isset($_POST['class_name'])) {
                         echo "New class can't be register!";
                     }
                     ?>
-                    
                 </div>
                 <?php } ?>
             <div class="form-group my-3">

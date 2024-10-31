@@ -2,6 +2,7 @@
 <?php require_once ("./stroage/student_crud.php") ?>
 <?php require_once ("./stroage/class_crud.php") ?>
 <?php require_once ("./stroage/teacher_crud.php") ?>
+<?php require_once ("./stroage/batch_crud.php") ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

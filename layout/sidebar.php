@@ -10,7 +10,7 @@
         </div>
         <div class="menu">
           <div onclick="location.replace('./class_list.php')" class="menu-item ms-4 my-2">
-            <i class="bi bi-book"></i>
+            <i class="bi bi-bank"></i>
             <a class="menu-list">Class</a>
           </div>
         </div>
@@ -18,6 +18,12 @@
           <div onclick="location.replace('./teacher_list.php')" class="menu-item ms-4 my-2">
             <i class="bi bi-mortarboard-fill"></i>
             <a class="menu-list">Teacher</a>
+          </div>
+        </div>
+        <div class="menu">
+          <div onclick="location.replace('./batch_list.php')" class="menu-item ms-4 my-2">
+            <i class="bi bi-book"></i>
+            <a class="menu-list">Batch</a>
           </div>
         </div>
         <div class="menu">

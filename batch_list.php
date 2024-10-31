@@ -1,28 +1,11 @@
 <?php require_once ("./layout/header.php") ?>
 <?php
-$message = "";
-if (isset($_GET["delete_id"])) {
-    $teacher_id = $_GET["delete_id"];
-    if (delete_teacher($mysqli, $teacher_id)) {
-        $message = "Teacher is deleted!";
-    } else {
-        if ($mysqli->errno === 1146) {
-            $message = "Your sql sentence is wrong!";
-        } elseif ($mysqli->errno === 1451) {
-            $message = "Teacher is teaching class,so can't delete, if you want to delete, fire first!";
-        } else {
-            $message = $mysqli->error;
-        }
-    }
-}
+
 ?>
-<h2>Teacher List</h2>
-<?php if ($message) { ?>
-<div class="alert alert-danger"><?= $message ?></div>
-<?php } ?>
+<h2>Batch List</h2>
 <div class="card">
     <div class="card-header d-flex justify-content-end">
-        <a href="./add_teacher.php" class="btn btn-secondary"> Add New Teacher</a>
+        <a href="./add_batch.php" class="btn btn-secondary"> Add New Batch</a>
     </div>
     <div class="card-body">
         <table class="table table-border">
@@ -30,23 +13,36 @@ if (isset($_GET["delete_id"])) {
                 <tr>
                     <th>NO</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>EXP</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Fees</th>
+                    <th>Teacher</th>
+                    <th>Class</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-            <?php $teacher_list = get_all_teacher($mysqli); ?>
+            <?php $batch_list = get_all_batch_join($mysqli); ?>
                 <?php $i = 1;?>
-                <?php while ($teacher = $teacher_list->fetch_assoc()) { ?>             
+                <?php while ($batch = $batch_list->fetch_assoc()) {
+                    ?>             
                 <tr>
                     <td><?= $i ?></td>
-                    <td><?= $teacher['teacher_name'] ?></td>
-                    <td><?= $teacher['teacher_email'] ?></td>
-                    <td><?= $teacher['exp'] ?> years</td>
+                    <td><?= $batch["batch_name"] ?></td>
+                    <td><?= $batch["start_date"] ?></td>
+                    <td><?= $batch["end_date"] ?></td>
+                    <td><?= $batch["fees"] ?></td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="./add_teacher.php?teacher_id=<?= $teacher["teacher_id"] ?>"><i class="bi bi-pen"></i></a>
-                        <button class="btn btn-sm btn-danger ms-2 confirmDelete" data-id="<?= $teacher["teacher_id"] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
+                      <?php
+                        // $teacher_id = $batch["teacher_id"];
+                      // $teacher = get_teacher_id($mysqli, $teacher_id);
+                      echo $batch["teacher_name"];
+                    ?>
+                    </td>
+                    <td><?= $batch["class_name"] ?></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="./add_batch.php?class_id=<?= $batch["batch_id"] ?>"><i class="bi bi-pen"></i></a>
+                        <button class="btn btn-sm btn-danger ms-2 confirmDelete" data-id="<?= $batch["batch_id"] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>                  
                 <?php $i++;
@@ -74,7 +70,7 @@ if (isset($_GET["delete_id"])) {
     </div>
   </div>
 </div>
-<script>
+<script> 
     let deleteId =undefined;
     let confirmBtn = document.querySelectorAll(".confirmDelete");
     let deleted = document.querySelector("#deleted");
@@ -84,7 +80,7 @@ if (isset($_GET["delete_id"])) {
     })
 });
 deleted.addEventListener("click",()=>{
-    location.replace("./teacher_list.php?delete_id="+deleteId);
+    location.replace("./batch_list.php?delete_id="+deleteId);
 })
 </script>
 <?php require_once ("./layout/footer.php") ?>
