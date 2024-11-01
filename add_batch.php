@@ -14,7 +14,8 @@ if (isset($_POST['batch_name'])) {
     $fees = $_POST['fees'];
     $description = $_POST['description'];
     $teacher_id = $_POST['teacher_id'];
-    $class_id = $_POST['class_id'];
+    $class_id = isset($_POST['class_id']) ? $_POST['class_id'] : "";
+    var_dump($class_id);
     if ($batch_name === "") {
         $batch_name_err = "Teacher name can not be blank!";
         $check_invalid = false;
@@ -102,7 +103,7 @@ if (isset($_POST['batch_name'])) {
                 <div class="form-group my-3 col-6">
                     <label for="class_id" class="form-label">Class</label>
                     <select name="class_id" id="class_id" class="form-select">
-                        <option value="" selected >Select Class</option>
+                        <option value="" selected disabled >Select Class</option>
                         <?php $class_list = get_all_class($mysqli); ?>
                         <?php while ($class = $class_list->fetch_assoc()) { ?>
                             

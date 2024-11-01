@@ -19,6 +19,12 @@ function get_student_id($mysqli, $student_id)
     $resule = $mysqli->query($sql);
     return $resule->fetch_assoc();
 }
+function get_last_student($mysqli)
+{
+    $sql = "SELECT * FROM `student` WHERE `student_id`=(SELECT MAX(`student_id`) FROM `student`)";
+    $resule = $mysqli->query($sql);
+    return $resule->fetch_assoc();
+}
 
 function update_student($mysqli, $student_id, $student_name, $student_address, $student_age, $student_email)
 {
