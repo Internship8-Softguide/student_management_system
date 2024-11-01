@@ -41,7 +41,8 @@
                     </td>
                     <td><?= $batch["class_name"] ?></td>
                     <td>
-                        <a class="btn btn-sm btn-primary" href="./add_batch.php?class_id=<?= $batch["batch_id"] ?>"><i class="bi bi-pen"></i></a>
+                    <a class="btn btn-sm btn-secondary" href="./student_batch_list.php?batch_id=<?= $batch["batch_id"] ?>&class=<?= $batch["class_name"] ?>"><i class="bi bi-list"></i></a>
+                    <a class="btn btn-sm btn-primary" href="./add_batch.php?class_id=<?= $batch["batch_id"] ?>"><i class="bi bi-pen"></i></a>
                         <button class="btn btn-sm btn-danger ms-2 confirmDelete" data-id="<?= $batch["batch_id"] ?>" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>                  

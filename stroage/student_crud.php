@@ -26,6 +26,18 @@ function get_last_student($mysqli)
     return $resule->fetch_assoc();
 }
 
+function get_all_student_with_batch_id($mysqli, $batch_id)
+{
+    $sql = "SELECT st.* FROM `student_batch` sb INNER JOIN `student` st ON sb.student_id=st.student_id WHERE sb.`batch_id`=$batch_id";
+    return $mysqli->query($sql);
+}
+
+function get_all_student_without($mysqli, $batch_id)
+{
+    $sql = "SELECT DISTINCT * FROM `student` s LEFT JOIN `student_batch` b ON s.student_id!=b.student_id WHERE b.batch_id=$batch_id";
+    return $mysqli->query($sql);
+}
+
 function update_student($mysqli, $student_id, $student_name, $student_address, $student_age, $student_email)
 {
     $sql = "UPDATE  `student` SET `student_name`='$student_name', `student_address`='$student_address', `student_age`='$student_age', `student_email`='$student_email',  WHERE `student_id`=$student_id";
