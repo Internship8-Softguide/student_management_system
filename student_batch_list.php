@@ -2,6 +2,7 @@
 <h2>Student List in <?= $_GET["class"] ?></h2>
 <div class="card">
     <div class="card-header d-flex justify-content-end">
+    <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>" class="btn btn-warning me-3"> Attendence</a>
         <a href="./add_student_batch.php?batch_id=<?= $_GET["batch_id"] ?>&class=<?= $_GET["class"] ?>" class="btn btn-secondary"> Add Student</a>
     </div>
     <div class="card-body">

@@ -28,13 +28,13 @@ function get_last_student($mysqli)
 
 function get_all_student_with_batch_id($mysqli, $batch_id)
 {
-    $sql = "SELECT st.* FROM `student_batch` sb INNER JOIN `student` st ON sb.student_id=st.student_id WHERE sb.`batch_id`=$batch_id";
+    $sql = "SELECT st.*,sb.student_batch_id FROM `student_batch` sb INNER JOIN `student` st ON sb.student_id=st.student_id WHERE sb.`batch_id`=$batch_id";
     return $mysqli->query($sql);
 }
 
 function get_all_student_without($mysqli, $batch_id)
 {
-    $sql = "SELECT DISTINCT * FROM `student` s LEFT JOIN `student_batch` b ON s.student_id!=b.student_id WHERE b.batch_id=$batch_id";
+    $sql = "SELECT * FROM `student` WHERE `student_id` NOT IN (SELECT `student_id` FROM `student_batch` WHERE `batch_id`=$batch_id)";
     return $mysqli->query($sql);
 }
 

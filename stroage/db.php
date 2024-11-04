@@ -33,10 +33,6 @@ function create_tables($mysqli)
     if (!$mysqli->query($sql)) {
         return false;
     }
-    $sql = "CREATE TABLE IF NOT EXISTS `marking_type`(`marking_type_id` INT AUTO_INCREMENT,`type_name` VARCHAR(45) NOT NULL,`min_mark` INT NOT NULL,`max_mark` INT NOT NULL,PRIMARY KEY(`marking_type_id`))";
-    if (!$mysqli->query($sql)) {
-        return false;
-    }
     $sql = "CREATE TABLE IF NOT EXISTS `batch`(`batch_id` INT AUTO_INCREMENT,`batch_name` VARCHAR(80), `fees` INT NOT NULL, `description` VARCHAR(225) NOT NULL, `start_date` DATETIME NOT NULL , `end_date` DATETIME NOT NULL,`teacher_id` INT NOT NULL,`class_id` INT NOT NULL,PRIMARY KEY(`batch_id`),FOREIGN KEY (`class_id`) references `class`(`class_id`),FOREIGN KEY (`teacher_id`) references `teacher`(`teacher_id`))";
     if (!$mysqli->query($sql)) {
         return false;
@@ -45,16 +41,8 @@ function create_tables($mysqli)
     if (!$mysqli->query($sql)) {
         return false;
     }
-    $sql = "CREATE TABLE IF NOT EXISTS `marking`(`marking_id` INT AUTO_INCREMENT,`student_batch_id` INT NOT NULL,`marking_type_id` INT NOT NULL,`mark` INT NOT NULL,PRIMARY KEY(`marking_id`),FOREIGN KEY (`marking_type_id`) references `marking_type`(`marking_type_id`),FOREIGN KEY (`student_batch_id`) references `student_batch`(`student_batch_id`))";
-    if (!$mysqli->query($sql)) {
-        return false;
-    }
-    $sql = "CREATE TABLE IF NOT EXISTS `attendence`(`attendence_id` INT AUTO_INCREMENT,`present` BOOLEAN NOT NULL DEFAULT FALSE ,`leave` BOOLEAN NOT NULL DEFAULT FALSE,`student_batch_id` INT NOT NULL,PRIMARY KEY(`attendence_id`),FOREIGN KEY (`student_batch_id`) references `student_batch`(`student_batch_id`))";
+    $sql = "CREATE TABLE IF NOT EXISTS `attendence`(`attendence_id` INT AUTO_INCREMENT,`date` DATE,`present` BOOLEAN NOT NULL DEFAULT FALSE ,`leave` BOOLEAN NOT NULL DEFAULT FALSE,`student_batch_id` INT NOT NULL,PRIMARY KEY(`attendence_id`),FOREIGN KEY (`student_batch_id`) references `student_batch`(`student_batch_id`))";
 
-    if (!$mysqli->query($sql)) {
-        return false;
-    }
-    $sql = "CREATE TABLE IF NOT EXISTS `student_grade`(`student_grade_id` INT AUTO_INCREMENT,`student_grade` VARCHAR(10) NOT NULL,`student_batch_id` INT NOT NULL,PRIMARY KEY(`student_grade_id`),FOREIGN KEY (`student_batch_id`) references `student_batch`(`student_batch_id`))";
     if (!$mysqli->query($sql)) {
         return false;
     }

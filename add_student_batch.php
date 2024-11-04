@@ -10,19 +10,18 @@ $validation_message = "";
 
 if (isset($_POST['student_id'])) {
     $student_id =  $_POST['student_id'];
-    var_dump($student_id);
     if ($student_id === "") {
         $student_id_err = "Class name can not be blank!";
         $invalid = false;
     }
 
-    // if ($invalid) {
-    //     if (add_student_batch($mysqli, $student_id, $_GET["batch_id"])) {
-    //         header("Location:student_batch_list.php?batch_id=$_GET[batch_id]&class=$_GET[class]");
-    //     } else {
-    //         $validation_message = "Internal server Error";
-    //     }
-    // }
+    if ($invalid) {
+        if (add_student_batch($mysqli, $student_id, $_GET["batch_id"])) {
+            header("Location:student_batch_list.php?batch_id=$_GET[batch_id]&class=$_GET[class]");
+        } else {
+            $validation_message = "Internal server Error";
+        }
+    }
 
 }
 ?>

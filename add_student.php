@@ -53,9 +53,7 @@ if (isset($_POST['student_name'])) {
                     if (add_student_batch($mysqli, $current_student["student_id"], $batch["batch_id"])) {
                         header("Location:student_list.php");
                     } else {
-
                         $validation_message = "Internal server error!";
-
                     }
                 }
             } else {
