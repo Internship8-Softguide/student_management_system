@@ -13,6 +13,7 @@
                     <th>Email</th>
                     <th>Address</th>
                     <th>Age</th>
+                    <th>Batches</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                     <td><?= $student["student_email"] ?></td>
                     <td><?= $student["student_address"] ?></td>
                     <td><?= $student["student_age"] ?></td>
+                    <td><a href="./student_detail_batch_list.php?student_id=<?= $student["student_id"] ?>" class="btn btn-sm btn-secondary">Class</a></td>
                 </tr>                  
                 <?php $i++;
                 } ?>    

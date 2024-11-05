@@ -26,6 +26,13 @@ function get_all_batch_join($mysqli)
     return $mysqli->query($sql);
 }
 
+function get_batch_with_student_id($mysqli, $student_id)
+{
+    $sql = "SELECT t.teacher_name,b.batch_name,c.class_name,sb.student_id,sb.student_batch_id FROM `batch` b INNER JOIN `student_batch` sb ON sb.batch_id = b.batch_id INNER JOIN `class` c ON c.class_id=b.class_id INNER JOIN `teacher` t ON t.teacher_id=b.teacher_id WHERE sb.student_id=$student_id";
+    return $mysqli->query($sql);
+}
+
+
 function get_batch_id($mysqli, $batch_id)
 {
     $sql = "SELECT * FROM `batch` WHERE `batch_id`=$batch_id";
