@@ -1,24 +1,44 @@
 <?php require_once ("./layout/header.php") ?>
 <?php
 $message = '';
-if (isset($_GET['present'])) {
-    $id = $_GET['present'];
-    if (!present_attendence($mysqli, $id)) {
-        $message = "Internal server error!";
+$student_list_attendence = get_all_student_attendence($mysqli, $_GET["batch_id"]);
+if (count($student_list_attendence ->fetch_all()) === 0) {
+    $student_list = get_all_student_with_batch_id($mysqli, $_GET["batch_id"]);
+    while ($std = $student_list->fetch_assoc()) {
+        absent_attendence($mysqli, $std['student_batch_id']);
     }
 }
-if (isset($_GET['absent'])) {
-    $id = $_GET['absent'];
-    if (!absent_attendence($mysqli, $id)) {
+
+
+
+
+
+if (isset($_GET['present'])) {
+    $id = $_GET['present'];
+    if (present_attendence($mysqli, $id)) {
+        header("Location:./add_attendence_batch.php?batch_id=$_GET[batch_id]");
+    } else {
         $message = "Internal server error!";
+
     }
 }
 if (isset($_GET['leave'])) {
     $id = $_GET['leave'];
-    if (!leave_attendence($mysqli, $id)) {
+    if (leave_attendence($mysqli, $id)) {
+        header("Location:./add_attendence_batch.php?batch_id=$_GET[batch_id]");
+    } else {
         $message = "Internal server error!";
+
     }
 }
+
+if (isset($_GET['present_all'])) {
+    $student_list = get_all_student_attendence($mysqli, $_GET["batch_id"]);
+    while ($std = $student_list->fetch_assoc()) {
+        present_attendence($mysqli, $std['attendence_id']);
+    }
+}
+
 
 ?>
 <h2>Pay attencence</h2>
@@ -39,9 +59,9 @@ if (isset($_GET['leave'])) {
                 </tr>
             </thead>
             <tbody>
-                <?php $student_list = get_all_student_with_batch_id($mysqli, $_GET["batch_id"]); ?>
+                <?php $student_list = get_all_student_attendence($mysqli, $_GET["batch_id"]); ?>
                 <?php $i = 1;?>
-                <?php while ($student = $student_list->fetch_assoc()) { ?>             
+                <?php while ($student = $student_list->fetch_assoc()) { ?>           
                 <tr>
                     <td><?= $i ?></td>
                     <td><?= $student["student_name"] ?></td>
@@ -49,9 +69,18 @@ if (isset($_GET['leave'])) {
                     <td><?= $student["student_address"] ?></td>
                     <td><?= $student["student_age"] ?></td>
                     <td>
-                        <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>&present=<?= $student["student_batch_id"] ?>" class="btn btn-success btn-sm">Present</a>
-                        <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>&leave=<?= $student["student_batch_id"] ?>" class="btn btn-warning btn-sm">Leave</a>
-                        <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>&absent=<?= $student["student_batch_id"] ?>" class="btn btn-danger btn-sm">Absent</a>
+                        <?php if ($student["present"] == 0 && $student["leave"] == 0) {?>
+                            <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>&present=<?= $student["attendence_id"] ?>" class="btn btn-success btn-sm">Present</a>
+                            <a href="./add_attendence_batch.php?batch_id=<?= $_GET["batch_id"] ?>&leave=<?= $student["attendence_id"] ?>" class="btn btn-warning btn-sm">Leave</a>
+                        <?php } else {?>
+                            <?php if ($student["present"] === "1") { ?>
+                                <p class="text-success">Present</p>
+                            <?php } elseif ($student["leave"] === "1") { ?>
+                                    <p class="text-warning">Leave</p>
+                                <?php } else {?>
+                                <p class="text-danger">Absent</p>
+                            <?php } ?>
+                        <?php } ?>
                     </td>
                 </tr>                  
                 <?php $i++;

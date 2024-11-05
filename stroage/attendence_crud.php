@@ -1,9 +1,9 @@
 <?php
 
 
-function present_attendence($mysqli, $student_batch_id)
+function present_attendence($mysqli, $attendence_id)
 {
-    $sql = "INSERT INTO `attendence` (`leave`,`present`,`date`,`student_batch_id`) VALUES (0,1,NOW(),$student_batch_id)";
+    $sql = "UPDATE `attendence` SET `present`=1 WHERE `attendence_id`=$attendence_id";
     return $mysqli->query($sql);
 }
 function absent_attendence($mysqli, $student_batch_id)
@@ -11,9 +11,9 @@ function absent_attendence($mysqli, $student_batch_id)
     $sql = "INSERT INTO `attendence` (`leave`,`present`,`date`,`student_batch_id`) VALUES (0,0,NOW(),$student_batch_id)";
     return $mysqli->query($sql);
 }
-function leave_attendence($mysqli, $student_batch_id)
+function leave_attendence($mysqli, $attendence_id)
 {
-    $sql = "INSERT INTO `attendence` (`leave`,`present`,`date`,`student_batch_id`) VALUES (1,0,NOW(),$student_batch_id)";
+    $sql = "UPDATE `attendence` SET `leave`=1 WHERE `attendence_id`=$attendence_id";
     return $mysqli->query($sql);
 }
 
