@@ -1,4 +1,9 @@
 <?php require_once ("./layout/header.php") ?>
+<?php
+if (isset($_POST['search'])) {
+    echo "student list";
+}
+?>
 <h2>Student List</h2>
 <div class="card">
     <div class="card-header d-flex justify-content-end">

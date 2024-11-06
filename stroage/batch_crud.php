@@ -33,11 +33,20 @@ function get_batch_with_student_id($mysqli, $student_id)
 }
 
 
+
+
 function get_batch_id($mysqli, $batch_id)
 {
     $sql = "SELECT * FROM `batch` WHERE `batch_id`=$batch_id";
     $resule = $mysqli->query($sql);
     return $resule->fetch_assoc();
+}
+
+function get_batch_end_date_id($mysqli, $batch_id)
+{
+    $sql = "SELECT `end_date` FROM `batch` WHERE `batch_id`=$batch_id";
+    $resule = $mysqli->query($sql);
+    return $resule->fetch_assoc()["end_date"];
 }
 
 function update_batch($mysqli, $batch_id, $batch_name, $start_date, $end_date, $fees, $description, $teacher_id, $class_id)

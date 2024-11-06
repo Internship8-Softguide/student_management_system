@@ -1,6 +1,8 @@
 <?php require_once ("./layout/header.php") ?>
 <?php
-
+if (isset($_POST['search'])) {
+    echo "batch list";
+}
 ?>
 <h2>Batch List</h2>
 <div class="card">

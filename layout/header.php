@@ -28,7 +28,7 @@
             <form method="post">
               <div class="d-flex search">
                 <i class="bi bi-search"></i>
-                <input type="text" placeholder="Search" />
+                <input type="text" name="search" placeholder="Search" />
               </div>
             </form>
           </div>
